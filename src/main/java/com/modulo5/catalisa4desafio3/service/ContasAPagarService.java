@@ -6,6 +6,7 @@ import com.modulo5.catalisa4desafio3.repository.ContasAPagarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +41,7 @@ public class ContasAPagarService {
     }
 
     public ContasAPagarModel alterar(ContasAPagarModel contasAPagarModel, Long id) {
-        if (contasAPagarModel.getStatus().equals(Status.PAGA)) {
+        if (contasAPagarModel.getStatus().equals(Status.PAGO)) {
             LocalDateTime dataAtual = LocalDateTime.now();
             contasAPagarModel.setDataDePagamento(dataAtual);
         }

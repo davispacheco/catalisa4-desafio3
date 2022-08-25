@@ -41,8 +41,4 @@ public class ContasAPagarModel {
 
     @Column(length = 20)
     private Status status;
-
-    public void setDataDeVencimento(String dataDeVencimento) {
-        this.dataDeVencimento = LocalDate.parse(dataDeVencimento);
-    }
 }

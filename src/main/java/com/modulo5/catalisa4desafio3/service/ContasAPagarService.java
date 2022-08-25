@@ -34,8 +34,8 @@ public class ContasAPagarService {
     }
 
     public ContasAPagarModel cadastrar(ContasAPagarModel contasAPagarModel) {
-        LocalDateTime dataAtual = LocalDateTime.now();
-        if (contasAPagarModel.getDataDeVencimento().isBefore(dataAtual.toLocalDate())) {
+        LocalDate dataAtual = LocalDate.now();
+        if (contasAPagarModel.getDataDeVencimento().isBefore(dataAtual)) {
             contasAPagarModel.setStatus(Status.VENCIDA);
         } else {
             contasAPagarModel.setStatus(Status.AGUARDANDO);
@@ -49,7 +49,7 @@ public class ContasAPagarService {
     }
 
     public ContasAPagarModel alterar(ContasAPagarModel contasAPagarModel, Long id) {
-        if (contasAPagarModel.getStatus().equals(contasAPagarModel.getStatus().PAGO)) {
+        if (contasAPagarModel.getStatus().equals(Status.PAGO)) {
             LocalDateTime dataAtual = LocalDateTime.now();
             contasAPagarModel.setDataDePagamento(dataAtual);
         }

@@ -39,12 +39,12 @@ public class ContasAPagarController {
     }
 
     @PostMapping(path = "/contas")
-    public ResponseEntity<ContasAPagarModel> cadastrarConta(ContasAPagarModel contasAPagarModel) {
+    public ResponseEntity<ContasAPagarModel> cadastrarConta(@RequestBody ContasAPagarModel contasAPagarModel) {
         return new ResponseEntity<>(contasAPagarService.cadastrar(contasAPagarModel), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/contas/{id}")
-    public ResponseEntity<ContasAPagarModel> alterarConta(ContasAPagarModel contasAPagarModel, @PathVariable Long id) {
+    public ResponseEntity<ContasAPagarModel> alterarConta(@RequestBody ContasAPagarModel contasAPagarModel, @PathVariable Long id) {
         return ResponseEntity.ok(contasAPagarService.alterar(contasAPagarModel, id));
     }
 

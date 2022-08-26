@@ -3,6 +3,7 @@ package com.modulo5.catalisa4desafio3.service;
 import com.modulo5.catalisa4desafio3.model.ContasAPagarModel;
 import com.modulo5.catalisa4desafio3.model.enums.Status;
 import com.modulo5.catalisa4desafio3.model.enums.Tipo;
+import com.modulo5.catalisa4desafio3.repository.ContasAPagarProjection;
 import com.modulo5.catalisa4desafio3.repository.ContasAPagarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,16 @@ public class ContasAPagarService {
     @Autowired
     private ContasAPagarRepository contasAPagarRepository;
 
-    public List<ContasAPagarModel> buscarTodas() {
-        return contasAPagarRepository.findAll();
+    public List<ContasAPagarProjection> buscarTodas() {
+        return contasAPagarRepository.findAllContas();
     }
 
     public Optional<ContasAPagarModel> buscarPorId(Long id) {
         return contasAPagarRepository.findById(id);
+    }
+
+    public List<ContasAPagarModel> buscarPorNome(String nome) {
+        return contasAPagarRepository.findByNome(nome);
     }
 
     public List<ContasAPagarModel> buscarPorStatus(Status status) {

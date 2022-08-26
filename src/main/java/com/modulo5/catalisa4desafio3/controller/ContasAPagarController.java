@@ -3,6 +3,7 @@ package com.modulo5.catalisa4desafio3.controller;
 import com.modulo5.catalisa4desafio3.model.ContasAPagarModel;
 import com.modulo5.catalisa4desafio3.model.enums.Status;
 import com.modulo5.catalisa4desafio3.model.enums.Tipo;
+import com.modulo5.catalisa4desafio3.repository.ContasAPagarProjection;
 import com.modulo5.catalisa4desafio3.service.ContasAPagarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class ContasAPagarController {
     private ContasAPagarService contasAPagarService;
 
     @GetMapping(path = "/contas")
-    public ResponseEntity<List<ContasAPagarModel>> buscarTodasContas() {
+    public ResponseEntity<List<ContasAPagarProjection>> buscarTodasContas() {
         return ResponseEntity.ok(contasAPagarService.buscarTodas());
     }
 
@@ -27,6 +28,10 @@ public class ContasAPagarController {
         return ResponseEntity.ok(contasAPagarService.buscarPorId(id));
     }
 
+    @GetMapping(path = "/nome/{nome}")
+    public ResponseEntity<List<ContasAPagarModel>> buscarContaPorNome(@PathVariable String nome) {
+        return ResponseEntity.ok(contasAPagarService.buscarPorNome(nome));
+    }
 
     @GetMapping(path = "/contas/status/{status}")
     public ResponseEntity<List<ContasAPagarModel>> buscarContaPorStatus(@PathVariable Status status) {

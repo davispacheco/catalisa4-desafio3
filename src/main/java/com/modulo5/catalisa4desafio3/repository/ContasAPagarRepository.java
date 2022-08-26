@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ContasAPagarRepository extends JpaRepository<ContasAPagarModel, Long> {
+    @Query("select c from ContasAPagarModel c")
     List<ContasAPagarProjection> findAllContas();
 
     List<ContasAPagarModel> findByNome(String nome);

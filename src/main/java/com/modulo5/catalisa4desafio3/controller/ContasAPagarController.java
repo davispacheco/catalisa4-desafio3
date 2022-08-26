@@ -3,7 +3,7 @@ package com.modulo5.catalisa4desafio3.controller;
 import com.modulo5.catalisa4desafio3.model.ContasAPagarModel;
 import com.modulo5.catalisa4desafio3.model.enums.Status;
 import com.modulo5.catalisa4desafio3.model.enums.Tipo;
-import com.modulo5.catalisa4desafio3.repository.ContasAPagarProjection;
+import com.modulo5.catalisa4desafio3.projection.ContasAPagarProjection;
 import com.modulo5.catalisa4desafio3.service.ContasAPagarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

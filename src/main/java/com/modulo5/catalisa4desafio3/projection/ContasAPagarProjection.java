@@ -1,4 +1,4 @@
-package com.modulo5.catalisa4desafio3.repository;
+package com.modulo5.catalisa4desafio3.projection;
 
 import com.modulo5.catalisa4desafio3.model.enums.Status;
 

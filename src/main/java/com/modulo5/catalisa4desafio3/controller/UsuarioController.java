@@ -1,5 +1,7 @@
 package com.modulo5.catalisa4desafio3.controller;
 
+import com.modulo5.catalisa4desafio3.DTO.UsuarioDTO;
+import com.modulo5.catalisa4desafio3.DTO.UsuarioRespostaDTO;
 import com.modulo5.catalisa4desafio3.model.UsuarioModel;
 import com.modulo5.catalisa4desafio3.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +28,15 @@ public class UsuarioController {
     }
 
     @PostMapping(path = "/usuarios")
-    public ResponseEntity<UsuarioModel> cadastrarUsuario(@RequestBody UsuarioModel usuarioModel) {
-        return new ResponseEntity<>(usuarioService.cadastrar(usuarioModel), HttpStatus.CREATED);
+    public ResponseEntity<UsuarioRespostaDTO> cadastrarUsuario(@RequestBody UsuarioDTO dto) {
+        UsuarioModel usuario = usuarioService.cadastrar(dto.converterParaObjeto());
+        return new ResponseEntity<>(UsuarioRespostaDTO.converterParaDTO(usuario), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/usuarios/{id}")
-    public ResponseEntity<UsuarioModel> alterarUsuario(@RequestBody UsuarioModel usuarioModel, @PathVariable Long id) {
-        return ResponseEntity.ok(usuarioService.alterar(usuarioModel));
+    public ResponseEntity<UsuarioRespostaDTO> alterarUsuario(@RequestBody UsuarioDTO dto, @PathVariable Long id) {
+        UsuarioModel usuario = usuarioService.alterar(dto.converterParaObjeto());
+        return ResponseEntity.ok(UsuarioRespostaDTO.converterParaDTO(usuario));
     }
 
     @DeleteMapping(path = "/usuarios/{id}")

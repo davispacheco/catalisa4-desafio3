@@ -1,6 +1,5 @@
 package com.modulo5.catalisa4desafio3.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +9,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "enderecos")
 public class EnderecoModel {
@@ -37,4 +35,13 @@ public class EnderecoModel {
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "codigo")
     private UsuarioModel usuario;
+
+    public EnderecoModel(String logradouro, String bairro, String cep, String pontoReferencia, CidadeModel cidade, UsuarioModel usuario) {
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.cep = cep;
+        this.pontoReferencia = pontoReferencia;
+        this.cidade = cidade;
+        this.usuario = usuario;
+    }
 }

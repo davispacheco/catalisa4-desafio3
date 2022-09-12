@@ -1,5 +1,6 @@
 package com.modulo5.catalisa4desafio3.service;
 
+import com.modulo5.catalisa4desafio3.DTO.UsuarioDTO;
 import com.modulo5.catalisa4desafio3.model.UsuarioModel;
 import com.modulo5.catalisa4desafio3.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;

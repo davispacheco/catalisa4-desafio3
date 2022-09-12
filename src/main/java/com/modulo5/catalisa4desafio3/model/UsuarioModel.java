@@ -1,7 +1,6 @@
 package com.modulo5.catalisa4desafio3.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +13,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "usuarios")
 public class UsuarioModel {
@@ -41,4 +39,11 @@ public class UsuarioModel {
     @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<EnderecoModel> enderecos = new ArrayList<>();
+
+    public UsuarioModel(String nomeUsuario, LocalDate dataNascimento, String email, String cpf) {
+        this.nomeUsuario = nomeUsuario;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.cpf = cpf;
+    }
 }

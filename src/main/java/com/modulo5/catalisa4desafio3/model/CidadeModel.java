@@ -1,7 +1,6 @@
 package com.modulo5.catalisa4desafio3.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +12,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "cidades")
 public class CidadeModel {
@@ -31,4 +29,9 @@ public class CidadeModel {
     @JsonIgnore
     @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL)
     private List<EnderecoModel> enderecos = new ArrayList<>();
+
+    public CidadeModel(String nomeCidade, EstadoModel estado) {
+        this.nomeCidade = nomeCidade;
+        this.estado = estado;
+    }
 }

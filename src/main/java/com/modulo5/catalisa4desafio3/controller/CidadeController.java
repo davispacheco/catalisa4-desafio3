@@ -1,5 +1,7 @@
 package com.modulo5.catalisa4desafio3.controller;
 
+import com.modulo5.catalisa4desafio3.DTO.CidadeDTO;
+import com.modulo5.catalisa4desafio3.DTO.CidadeRespostaDTO;
 import com.modulo5.catalisa4desafio3.model.CidadeModel;
 import com.modulo5.catalisa4desafio3.service.CidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +22,21 @@ public class CidadeController {
         return ResponseEntity.ok(cidadeService.buscarTodas());
     }
 
+    @GetMapping(path = "/cidades/{id}")
     public ResponseEntity<Optional<CidadeModel>> buscarCidadePorId(@PathVariable Long id) {
         return ResponseEntity.ok(cidadeService.buscarPorId(id));
     }
 
     @PostMapping(path = "/cidades")
-    public ResponseEntity<CidadeModel> cadastrarCidade(@RequestBody CidadeModel cidadeModel) {
-        return new ResponseEntity<>(cidadeService.cadastrar(cidadeModel), HttpStatus.CREATED);
+    public ResponseEntity<CidadeRespostaDTO> cadastrarCidade(@RequestBody CidadeDTO dto) {
+        CidadeModel cidade = cidadeService.cadastrar(dto.converterParaObjeto());
+        return new ResponseEntity<>(CidadeRespostaDTO.converterParaDTO(cidade), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/cidades/{id}")
-    public ResponseEntity<CidadeModel> alterarCidade(@RequestBody CidadeModel cidadeModel, @PathVariable Long id) {
-        return ResponseEntity.ok(cidadeService.alterar(cidadeModel));
+    public ResponseEntity<CidadeRespostaDTO> alterarCidade(@RequestBody CidadeDTO dto, @PathVariable Long id) {
+        CidadeModel cidade = cidadeService.alterar(dto.converterParaObjeto());
+        return ResponseEntity.ok(CidadeRespostaDTO.converterParaDTO(cidade));
     }
 
     @DeleteMapping(path = "/cidades/{id}")

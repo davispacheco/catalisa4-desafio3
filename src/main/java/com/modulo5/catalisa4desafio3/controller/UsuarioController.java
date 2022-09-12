@@ -20,9 +20,9 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.buscarTodos());
     }
 
-    @GetMapping(path = "/usuarios/{codigo}")
-    public ResponseEntity<Optional<UsuarioModel>> buscarUsuarioPorId(@PathVariable Long codigo) {
-        return ResponseEntity.ok(usuarioService.buscarPorId(codigo));
+    @GetMapping(path = "/usuarios/{id}")
+    public ResponseEntity<Optional<UsuarioModel>> buscarUsuarioPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(usuarioService.buscarPorId(id));
     }
 
     @PostMapping(path = "/usuarios")
@@ -30,14 +30,14 @@ public class UsuarioController {
         return new ResponseEntity<>(usuarioService.cadastrar(usuarioModel), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/usuarios/{codigo}")
-    public ResponseEntity<UsuarioModel> alterarUsuario(@RequestBody UsuarioModel usuarioModel, @PathVariable Long codigo) {
+    @PutMapping(path = "/usuarios/{id}")
+    public ResponseEntity<UsuarioModel> alterarUsuario(@RequestBody UsuarioModel usuarioModel, @PathVariable Long id) {
         return ResponseEntity.ok(usuarioService.alterar(usuarioModel));
     }
 
-    @DeleteMapping(path = "/usuarios/{codigo}")
-    public ResponseEntity<?> deletarUsuario(@PathVariable Long codigo) {
-        usuarioService.deletar(codigo);
+    @DeleteMapping(path = "/usuarios/{id}")
+    public ResponseEntity<?> deletarUsuario(@PathVariable Long id) {
+        usuarioService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 }

@@ -20,9 +20,9 @@ public class ContasAReceberController {
         return ResponseEntity.ok(contasAReceberService.buscarTodas());
     }
 
-    @GetMapping(path = "/contasreceber/{codigo}")
-    public ResponseEntity<Optional<ContasAReceberModel>> buscarContaPorId(@PathVariable Long codigo) {
-        return contasAReceberService.buscarPorId(codigo);
+    @GetMapping(path = "/contasreceber/{id}")
+    public ResponseEntity<Optional<ContasAReceberModel>> buscarContaPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(contasAReceberService.buscarPorId(id));
     }
 
     @PostMapping(path = "/contasreceber")
@@ -30,14 +30,14 @@ public class ContasAReceberController {
         return new ResponseEntity<>(contasAReceberService.cadastrar(contasAReceberModel), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/contasreceber/{codigo}")
-    public ResponseEntity<ContasAReceberModel> alterarConta(@RequestBody ContasAReceberModel contasAReceberModel, @PathVariable Long codigo) {
+    @PutMapping(path = "/contasreceber/{id}")
+    public ResponseEntity<ContasAReceberModel> alterarConta(@RequestBody ContasAReceberModel contasAReceberModel, @PathVariable Long id) {
         return ResponseEntity.ok(contasAReceberService.alterar(contasAReceberModel));
     }
 
-    @DeleteMapping(path = "/contasreceber/{codigo}")
-    public ResponseEntity<?> deletarConta(@PathVariable Long codigo) {
-        contasAReceberService.deletar(codigo);
+    @DeleteMapping(path = "/contasreceber/{id}")
+    public ResponseEntity<?> deletarConta(@PathVariable Long id) {
+        contasAReceberService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 }

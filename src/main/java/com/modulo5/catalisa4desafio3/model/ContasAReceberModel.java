@@ -23,4 +23,8 @@ public class ContasAReceberModel {
     private String status;
 
     private BigDecimal valorRecebido;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "codigo")
+    private UsuarioModel usuario;
 }

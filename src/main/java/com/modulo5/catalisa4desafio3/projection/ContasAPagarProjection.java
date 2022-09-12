@@ -1,6 +1,6 @@
 package com.modulo5.catalisa4desafio3.projection;
 
-import com.modulo5.catalisa4desafio3.model.enums.Status;
+import com.modulo5.catalisa4desafio3.enumeration.Status;
 
 public interface ContasAPagarProjection {
     Long getId();

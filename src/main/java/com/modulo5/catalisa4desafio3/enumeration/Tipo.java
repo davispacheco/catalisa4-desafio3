@@ -1,4 +1,4 @@
-package com.modulo5.catalisa4desafio3.model.enums;
+package com.modulo5.catalisa4desafio3.enumeration;
 
 public enum Tipo {
     AGUA,

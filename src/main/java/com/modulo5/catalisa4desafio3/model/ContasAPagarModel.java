@@ -1,9 +1,7 @@
 package com.modulo5.catalisa4desafio3.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.modulo5.catalisa4desafio3.model.enums.Status;
-import com.modulo5.catalisa4desafio3.model.enums.Tipo;
+import com.modulo5.catalisa4desafio3.enumeration.Status;
+import com.modulo5.catalisa4desafio3.enumeration.Tipo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

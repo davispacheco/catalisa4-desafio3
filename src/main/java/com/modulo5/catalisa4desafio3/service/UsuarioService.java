@@ -1,6 +1,6 @@
 package com.modulo5.catalisa4desafio3.service;
 
-import com.modulo5.catalisa4desafio3.DTO.UsuarioDTO;
+import com.modulo5.catalisa4desafio3.DTO.UsuarioRespostaDTO;
 import com.modulo5.catalisa4desafio3.model.UsuarioModel;
 import com.modulo5.catalisa4desafio3.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,9 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public List<UsuarioModel> buscarTodos() {
-        return usuarioRepository.findAll();
+    public List<UsuarioRespostaDTO> buscarTodos() {
+        List<UsuarioModel> usuarios = usuarioRepository.findAll();
+        return UsuarioRespostaDTO.converterLista(usuarios);
     }
 
     public Optional<UsuarioModel> buscarPorId(Long codigo) {

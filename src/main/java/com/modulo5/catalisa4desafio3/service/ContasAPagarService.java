@@ -1,9 +1,9 @@
 package com.modulo5.catalisa4desafio3.service;
 
+import com.modulo5.catalisa4desafio3.DTO.ContasAPagarRespostaDTO;
 import com.modulo5.catalisa4desafio3.model.ContasAPagarModel;
 import com.modulo5.catalisa4desafio3.enumeration.Status;
 import com.modulo5.catalisa4desafio3.enumeration.Tipo;
-import com.modulo5.catalisa4desafio3.projection.ContasAPagarProjection;
 import com.modulo5.catalisa4desafio3.repository.ContasAPagarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,9 @@ public class ContasAPagarService {
     @Autowired
     private ContasAPagarRepository contasAPagarRepository;
 
-    public List<ContasAPagarProjection> buscarTodas() {
-        return contasAPagarRepository.findAllContas();
+    public List<ContasAPagarRespostaDTO> buscarTodas() {
+        List<ContasAPagarModel> contas = contasAPagarRepository.findAll();
+        return ContasAPagarRespostaDTO.converterLista(contas);
     }
 
     public Optional<ContasAPagarModel> buscarPorId(Long id) {
@@ -45,28 +46,18 @@ public class ContasAPagarService {
         } else {
             contasAPagarModel.setStatus(Status.AGUARDANDO);
         }
-        contasAPagarModel.getId();
-        contasAPagarModel.getNome();
-        contasAPagarModel.getValor();
-        contasAPagarModel.getTipo();
-        contasAPagarModel.getDataDeVencimento();
         return contasAPagarRepository.save(contasAPagarModel);
     }
 
-    public ContasAPagarModel alterar(ContasAPagarModel contasAPagarModel, Long id) {
+    public ContasAPagarModel alterar(ContasAPagarModel contasAPagarModel) {
         if (contasAPagarModel.getStatus().equals(Status.PAGO)) {
             LocalDateTime dataAtual = LocalDateTime.now();
             contasAPagarModel.setDataDePagamento(dataAtual);
         }
-        contasAPagarModel.getId();
-        contasAPagarModel.getNome();
-        contasAPagarModel.getTipo();
-        contasAPagarModel.getDataDeVencimento();
-        contasAPagarModel.getStatus();
         return contasAPagarRepository.save(contasAPagarModel);
     }
 
-    public void deletar(Long id) {
-        contasAPagarRepository.deleteById(id);
+    public void deletar(Long codigo) {
+        contasAPagarRepository.deleteById(codigo);
     }
 }

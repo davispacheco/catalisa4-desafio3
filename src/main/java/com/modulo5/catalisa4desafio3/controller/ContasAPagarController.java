@@ -1,9 +1,10 @@
 package com.modulo5.catalisa4desafio3.controller;
 
+import com.modulo5.catalisa4desafio3.DTO.ContasAPagarDTO;
+import com.modulo5.catalisa4desafio3.DTO.ContasAPagarRespostaDTO;
 import com.modulo5.catalisa4desafio3.model.ContasAPagarModel;
 import com.modulo5.catalisa4desafio3.enumeration.Status;
 import com.modulo5.catalisa4desafio3.enumeration.Tipo;
-import com.modulo5.catalisa4desafio3.projection.ContasAPagarProjection;
 import com.modulo5.catalisa4desafio3.service.ContasAPagarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class ContasAPagarController {
     private ContasAPagarService contasAPagarService;
 
     @GetMapping(path = "/contas")
-    public ResponseEntity<List<ContasAPagarProjection>> buscarTodasContas() {
+    public ResponseEntity<List<ContasAPagarRespostaDTO>> buscarTodasContas() {
         return ResponseEntity.ok(contasAPagarService.buscarTodas());
     }
 
@@ -44,13 +45,14 @@ public class ContasAPagarController {
     }
 
     @PostMapping(path = "/contas")
-    public ResponseEntity<ContasAPagarModel> cadastrarConta(@RequestBody ContasAPagarModel contasAPagarModel) {
-        return new ResponseEntity<>(contasAPagarService.cadastrar(contasAPagarModel), HttpStatus.CREATED);
+    public ResponseEntity<ContasAPagarRespostaDTO> cadastrarConta(@RequestBody ContasAPagarDTO dto) {
+        ContasAPagarModel conta = contasAPagarService.cadastrar(dto.converterParaObjeto());
+        return new ResponseEntity<>(ContasAPagarRespostaDTO.converterParaDTO(conta), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/contas/{id}")
     public ResponseEntity<ContasAPagarModel> alterarConta(@RequestBody ContasAPagarModel contasAPagarModel, @PathVariable Long id) {
-        return ResponseEntity.ok(contasAPagarService.alterar(contasAPagarModel, id));
+        return ResponseEntity.ok(contasAPagarService.alterar(contasAPagarModel));
     }
 
     @DeleteMapping(path = "/contas/{id}")

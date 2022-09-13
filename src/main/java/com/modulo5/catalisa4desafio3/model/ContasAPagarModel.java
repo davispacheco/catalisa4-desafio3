@@ -2,7 +2,6 @@ package com.modulo5.catalisa4desafio3.model;
 
 import com.modulo5.catalisa4desafio3.enumeration.Status;
 import com.modulo5.catalisa4desafio3.enumeration.Tipo;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,13 +13,12 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "contasapagar")
 public class ContasAPagarModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long codigo;
 
     @Column(length = 20, nullable = false)
     private String nome;
@@ -39,4 +37,13 @@ public class ContasAPagarModel {
 
     @Column(length = 20)
     private Status status;
+
+    public ContasAPagarModel(String nome, double valor, Tipo tipo, LocalDate dataDeVencimento, LocalDateTime dataDePagamento, Status status) {
+        this.nome = nome;
+        this.valor = valor;
+        this.tipo = tipo;
+        this.dataDeVencimento = dataDeVencimento;
+        this.dataDePagamento = dataDePagamento;
+        this.status = status;
+    }
 }

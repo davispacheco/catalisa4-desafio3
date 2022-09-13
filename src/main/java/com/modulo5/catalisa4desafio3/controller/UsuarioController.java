@@ -18,7 +18,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping(path = "/usuarios")
-    public ResponseEntity<List<UsuarioModel>> buscarTodosUsuarios() {
+    public ResponseEntity<List<UsuarioRespostaDTO>> buscarTodosUsuarios() {
         return ResponseEntity.ok(usuarioService.buscarTodos());
     }
 

@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
@@ -17,5 +19,14 @@ public class UsuarioRespostaDTO {
 
     public static UsuarioRespostaDTO converterParaDTO(UsuarioModel usuarioModel) {
         return new UsuarioRespostaDTO(usuarioModel.getCodigo(), usuarioModel.getNomeUsuario(), usuarioModel.getDataNascimento(), usuarioModel.getEmail());
+    }
+
+    public static List<UsuarioRespostaDTO> converterLista(List<UsuarioModel> usuarios) {
+        List<UsuarioRespostaDTO> novaLista = new ArrayList<>();
+        for (UsuarioModel usuario : usuarios) {
+            UsuarioRespostaDTO novoUsuario = new UsuarioRespostaDTO(usuario.getCodigo(), usuario.getNomeUsuario(), usuario.getDataNascimento(), usuario.getEmail());
+            novaLista.add(novoUsuario);
+        }
+        return novaLista;
     }
 }

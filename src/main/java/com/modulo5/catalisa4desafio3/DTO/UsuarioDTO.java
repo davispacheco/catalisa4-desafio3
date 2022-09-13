@@ -3,23 +3,25 @@ package com.modulo5.catalisa4desafio3.DTO;
 import com.modulo5.catalisa4desafio3.model.UsuarioModel;
 import lombok.Getter;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 public class UsuarioDTO {
-    @NotEmpty(message = "Nome do usuário deve ser preenchido.")
+    @NotBlank(message = "Nome do usuário deve ser preenchido.")
     private String nomeUsuario;
 
-    @NotEmpty(message = "Data de nascimento deve ser preenchida.")
+    @NotNull(message = "Data de nascimento deve ser preenchida.")
     private LocalDate dataNascimento;
 
-    @NotEmpty(message = "E-mail deve ser preenchido.")
+    @NotBlank(message = "E-mail deve ser preenchido.")
     private String email;
 
-    @NotEmpty(message = "CPF deve ser preenchido.")
+    @NotBlank(message = "CPF deve ser preenchido.")
     private String cpf;
 
     public UsuarioModel converterParaObjeto() {

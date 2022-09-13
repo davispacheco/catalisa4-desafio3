@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class UsuarioController {
     }
 
     @PostMapping(path = "/usuarios")
-    public ResponseEntity<UsuarioRespostaDTO> cadastrarUsuario(@RequestBody UsuarioDTO dto) {
+    public ResponseEntity<UsuarioRespostaDTO> cadastrarUsuario(@Valid @RequestBody UsuarioDTO dto) {
         UsuarioModel usuario = usuarioService.cadastrar(dto.converterParaObjeto());
         return new ResponseEntity<>(UsuarioRespostaDTO.converterParaDTO(usuario), HttpStatus.CREATED);
     }

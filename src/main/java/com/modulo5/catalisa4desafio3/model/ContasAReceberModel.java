@@ -19,7 +19,6 @@ public class ContasAReceberModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @Column(length = 20, nullable = false)
     private String status;
 
     private BigDecimal valorRecebido;

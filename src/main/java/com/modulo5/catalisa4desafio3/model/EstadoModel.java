@@ -19,10 +19,8 @@ public class EstadoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @Column(length = 2, nullable = false)
     private String uf;
 
-    @Column(length = 20, nullable = false)
     private String nomeEstado;
 
     @JsonIgnore

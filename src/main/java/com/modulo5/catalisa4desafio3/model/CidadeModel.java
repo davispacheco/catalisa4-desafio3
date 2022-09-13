@@ -19,7 +19,6 @@ public class CidadeModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @Column(length = 20, nullable = false)
     private String nomeCidade;
 
     @ManyToOne

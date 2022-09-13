@@ -16,16 +16,12 @@ public class EnderecoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @Column(length = 20, nullable = false)
     private String logradouro;
 
-    @Column(length = 20, nullable = false)
     private String bairro;
 
-    @Column(length = 8, nullable = false)
     private String cep;
 
-    @Column(length = 30, nullable = false)
     private String pontoReferencia;
 
     @ManyToOne

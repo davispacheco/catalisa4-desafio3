@@ -3,6 +3,7 @@ package com.modulo5.catalisa4desafio3.DTO;
 import com.modulo5.catalisa4desafio3.enumeration.Status;
 import com.modulo5.catalisa4desafio3.enumeration.Tipo;
 import com.modulo5.catalisa4desafio3.model.ContasAPagarModel;
+import com.modulo5.catalisa4desafio3.model.UsuarioModel;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -16,8 +17,9 @@ public class ContasAPagarDTO {
     private LocalDate dataDeVencimento;
     private LocalDateTime dataDePagamento;
     private Status status;
+    private UsuarioModel usuario;
 
     public ContasAPagarModel converterParaObjeto() {
-        return new ContasAPagarModel(nome, valor, tipo, dataDeVencimento, dataDePagamento, status);
+        return new ContasAPagarModel(nome, valor, tipo, dataDeVencimento, dataDePagamento, status, usuario);
     }
 }

@@ -34,6 +34,10 @@ public class UsuarioModel {
 
     @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<ContasAPagarModel> contasAPagar = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<ContasAReceberModel> contasAReceber = new ArrayList<>();
 
     @JsonIgnore

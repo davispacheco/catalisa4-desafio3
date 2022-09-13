@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "contasapagar")
+@Table(name = "contas_a_pagar")
 public class ContasAPagarModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,12 +38,17 @@ public class ContasAPagarModel {
     @Column(length = 20)
     private Status status;
 
-    public ContasAPagarModel(String nome, double valor, Tipo tipo, LocalDate dataDeVencimento, LocalDateTime dataDePagamento, Status status) {
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "codigo")
+    private UsuarioModel usuario;
+
+    public ContasAPagarModel(String nome, double valor, Tipo tipo, LocalDate dataDeVencimento, LocalDateTime dataDePagamento, Status status, UsuarioModel usuario) {
         this.nome = nome;
         this.valor = valor;
         this.tipo = tipo;
         this.dataDeVencimento = dataDeVencimento;
         this.dataDePagamento = dataDePagamento;
         this.status = status;
+        this.usuario = usuario;
     }
 }

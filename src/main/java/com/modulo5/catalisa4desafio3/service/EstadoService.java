@@ -1,5 +1,6 @@
 package com.modulo5.catalisa4desafio3.service;
 
+import com.modulo5.catalisa4desafio3.DTO.EstadoRespostaDTO;
 import com.modulo5.catalisa4desafio3.model.EstadoModel;
 import com.modulo5.catalisa4desafio3.repository.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,9 @@ public class EstadoService {
     @Autowired
     private EstadoRepository estadoRepository;
 
-    public List<EstadoModel> buscarTodos() {
-        return estadoRepository.findAll();
+    public List<EstadoRespostaDTO> buscarTodos() {
+        List<EstadoModel> estados = estadoRepository.findAll();
+        return EstadoRespostaDTO.converterLista(estados);
     }
 
     public Optional<EstadoModel> buscarPorId(Long codigo) {

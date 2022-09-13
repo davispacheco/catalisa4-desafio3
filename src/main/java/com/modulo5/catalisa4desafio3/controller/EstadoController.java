@@ -1,5 +1,7 @@
 package com.modulo5.catalisa4desafio3.controller;
 
+import com.modulo5.catalisa4desafio3.DTO.EstadoDTO;
+import com.modulo5.catalisa4desafio3.DTO.EstadoRespostaDTO;
 import com.modulo5.catalisa4desafio3.model.EstadoModel;
 import com.modulo5.catalisa4desafio3.service.EstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ public class EstadoController {
     private EstadoService estadoService;
 
     @GetMapping(path = "/estados")
-    public ResponseEntity<List<EstadoModel>> buscarTodosEstados() {
+    public ResponseEntity<List<EstadoRespostaDTO>> buscarTodosEstados() {
         return ResponseEntity.ok(estadoService.buscarTodos());
     }
 
@@ -26,13 +28,15 @@ public class EstadoController {
     }
 
     @PostMapping(path = "/estados")
-    public ResponseEntity<EstadoModel> cadastrarEstado(@RequestBody EstadoModel estadoModel) {
-        return new ResponseEntity<>(estadoService.cadastrar(estadoModel), HttpStatus.CREATED);
+    public ResponseEntity<EstadoRespostaDTO> cadastrarEstado(@RequestBody EstadoDTO dto) {
+        EstadoModel estado = estadoService.cadastrar(dto.converterParaObjeto());
+        return new ResponseEntity<>(EstadoRespostaDTO.converterParaDTO(estado), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/estados/{id}")
-    public ResponseEntity<EstadoModel> alterarEstado(@RequestBody EstadoModel estadoModel, @PathVariable Long id) {
-        return ResponseEntity.ok(estadoService.alterar(estadoModel));
+    public ResponseEntity<EstadoRespostaDTO> alterarEstado(@RequestBody EstadoDTO dto, @PathVariable Long id) {
+        EstadoModel estado = estadoService.alterar(dto.converterParaObjeto());
+        return ResponseEntity.ok(EstadoRespostaDTO.converterParaDTO(estado));
     }
 
     @DeleteMapping(path = "/estados/{id}")

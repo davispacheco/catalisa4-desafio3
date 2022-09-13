@@ -17,8 +17,8 @@ public class UsuarioRespostaDTO {
     private LocalDate dataNascimento;
     private String email;
 
-    public static UsuarioRespostaDTO converterParaDTO(UsuarioModel usuarioModel) {
-        return new UsuarioRespostaDTO(usuarioModel.getCodigo(), usuarioModel.getNomeUsuario(), usuarioModel.getDataNascimento(), usuarioModel.getEmail());
+    public static UsuarioRespostaDTO converterParaDTO(UsuarioModel usuario) {
+        return new UsuarioRespostaDTO(usuario.getCodigo(), usuario.getNomeUsuario(), usuario.getDataNascimento(), usuario.getEmail());
     }
 
     public static List<UsuarioRespostaDTO> converterLista(List<UsuarioModel> usuarios) {

@@ -3,11 +3,13 @@ package com.modulo5.catalisa4desafio3.DTO;
 import com.modulo5.catalisa4desafio3.model.CidadeModel;
 import com.modulo5.catalisa4desafio3.model.EstadoModel;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter
+@Setter
 public class CidadeDTO {
     @NotBlank(message = "Nome da cidade deve ser preenchido.")
     private String nomeCidade;

@@ -1,10 +1,13 @@
 package com.modulo5.catalisa4desafio3.DTO;
 
 import com.modulo5.catalisa4desafio3.model.EstadoModel;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
-
+@Getter
+@Setter
 public class EstadoDTO {
     @NotBlank(message = "UF deve ser preenchida.")
     @Length(min = 2, message = "UF deve possuir apenas {min} caracteres.")

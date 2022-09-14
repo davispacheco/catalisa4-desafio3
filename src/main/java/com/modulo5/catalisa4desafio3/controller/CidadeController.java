@@ -19,7 +19,7 @@ public class CidadeController {
     private CidadeService cidadeService;
 
     @GetMapping(path = "/cidades")
-    public ResponseEntity<List<CidadeModel>> buscarTodasCidades() {
+    public ResponseEntity<List<CidadeRespostaDTO>> buscarTodasCidades() {
         return ResponseEntity.ok(cidadeService.buscarTodas());
     }
 

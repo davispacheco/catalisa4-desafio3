@@ -50,7 +50,8 @@ public class ContasAReceberService {
             } else {
                 contasAReceberModel.setRecebimentoAlugueis(RecebimentoAlugueis.EM_DIA);
             }
-            BigDecimal resultado = alugueisFactory.getCalculoAluguel(contasAReceberModel.getRecebimentoAlugueis()).calcular(contasAReceberModel.getValorRecebido());
+            BigDecimal resultado = alugueisFactory.getCalculoAluguel(contasAReceberModel).calcular(contasAReceberModel.getValorRecebido());
+            contasAReceberModel.setValorFinal(resultado);
         }
         return contasAReceberRepository.save(contasAReceberModel);
     }

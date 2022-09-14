@@ -5,6 +5,7 @@ import com.modulo5.catalisa4desafio3.enumeration.TipoRecebido;
 import com.modulo5.catalisa4desafio3.model.ContasAReceberModel;
 import com.modulo5.catalisa4desafio3.model.UsuarioModel;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 public class ContasAReceberDTO {
     @NotBlank(message = "Status da conta deve ser preenchido.")
     private String status;

@@ -5,6 +5,7 @@ import com.modulo5.catalisa4desafio3.enumeration.Tipo;
 import com.modulo5.catalisa4desafio3.model.ContasAPagarModel;
 import com.modulo5.catalisa4desafio3.model.UsuarioModel;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 public class ContasAPagarDTO {
     @NotBlank(message = "Nome da conta deve ser preenchido.")
     private String nome;

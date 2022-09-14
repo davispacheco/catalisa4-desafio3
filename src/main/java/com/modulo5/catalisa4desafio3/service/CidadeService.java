@@ -1,5 +1,6 @@
 package com.modulo5.catalisa4desafio3.service;
 
+import com.modulo5.catalisa4desafio3.DTO.CidadeRespostaDTO;
 import com.modulo5.catalisa4desafio3.model.CidadeModel;
 import com.modulo5.catalisa4desafio3.repository.CidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,9 @@ public class CidadeService {
     @Autowired
     private CidadeRepository cidadeRepository;
 
-    public List<CidadeModel> buscarTodas() {
-        return cidadeRepository.findAll();
+    public List<CidadeRespostaDTO> buscarTodas() {
+        List<CidadeModel> cidades = cidadeRepository.findAll();
+        return CidadeRespostaDTO.converterLista(cidades);
     }
 
     public Optional<CidadeModel> buscarPorId(Long codigo) {

@@ -2,6 +2,7 @@ package com.modulo5.catalisa4desafio3.DTO;
 
 import com.modulo5.catalisa4desafio3.model.UsuarioModel;
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 public class UsuarioDTO {
     @NotBlank(message = "Nome do usuário deve ser preenchido.")
     @Length(min = 4, max = 20, message = "Nome do usuário deve possuir de {min} a {max} caracteres.")

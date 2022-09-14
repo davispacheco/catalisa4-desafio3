@@ -21,7 +21,7 @@ public class ContasAReceberModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String status;
 
     @Column(length = 20, nullable = false)

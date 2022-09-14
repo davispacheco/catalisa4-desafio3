@@ -14,5 +14,5 @@ public interface ContasAReceberRepository extends JpaRepository<ContasAReceberMo
 
     List<ContasAReceberModel> findByTipoRecebido(TipoRecebido tipoRecebido);
 
-List<ContasAReceberModel> findByDataDeVencimento(LocalDate dataDeVencimento);
+    List<ContasAReceberModel> findByDataDeVencimento(LocalDate dataDeVencimento);
 }

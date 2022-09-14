@@ -31,18 +31,18 @@ public class ContasAReceberController {
         return ResponseEntity.ok(contasAReceberService.buscarPorId(id));
     }
 
-    @GetMapping(path = "/contasreceber/{status}")
+    @GetMapping(path = "/contasreceber/status/{status}")
     public ResponseEntity<List<ContasAReceberModel>> buscarContaPorStatus(@PathVariable String status) {
         return ResponseEntity.ok(contasAReceberService.buscarPorStatus(status));
     }
 
-    @GetMapping(path = "/contasreceber/{tipoRecebido}")
+    @GetMapping(path = "/contasreceber/tiporecebido/{tipoRecebido}")
     public ResponseEntity<List<ContasAReceberModel>> buscarContaPorTipoRecebido(@PathVariable TipoRecebido tipoRecebido) {
         return ResponseEntity.ok(contasAReceberService.buscarPorTipoRecebido(tipoRecebido));
     }
 
-    @GetMapping(path = "/contasreceber/{dataDeVencimento}")
-    public ResponseEntity<List<ContasAReceberModel>> buscarContaPorDataDeVencimento(@PathVariable LocalDate dataDeVencimento) {
+    @GetMapping(path = "/contasreceber/datadevencimento/{dataDeVencimento}")
+    public ResponseEntity<List<ContasAReceberModel>> buscarContaPorDataDeVencimento(@PathVariable String dataDeVencimento) {
         return ResponseEntity.ok(contasAReceberService.buscarPorDataDeVencimento(dataDeVencimento));
     }
     @PostMapping(path = "/contasreceber")

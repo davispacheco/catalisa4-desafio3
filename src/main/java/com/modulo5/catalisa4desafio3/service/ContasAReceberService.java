@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,13 +37,21 @@ public class ContasAReceberService {
         return contasAReceberRepository.findByTipoRecebido(tipoRecebido);
     }
 
-    public List<ContasAReceberModel> buscarPorDataDeVencimento(LocalDate dataDeVencimento) {
-        return contasAReceberRepository.findByDataDeVencimento(dataDeVencimento);
+    public List<ContasAReceberModel> buscarPorDataDeVencimento(String dataDeVencimento) {
+        LocalDate localDate = LocalDate.parse(dataDeVencimento);
+        return contasAReceberRepository.findByDataDeVencimento(localDate);
     }
 
     public ContasAReceberModel cadastrar(ContasAReceberModel contasAReceberModel, AlugueisFactory alugueisFactory) {
+        LocalDate dataAtual = LocalDate.now();
+
+        if (contasAReceberModel.getDataDeVencimento().isBefore(dataAtual)) {
+            contasAReceberModel.setStatus("vencido");
+        } else {
+            contasAReceberModel.setStatus("em_aberto");
+        }
+
         if (contasAReceberModel.getTipoRecebido().equals(TipoRecebido.ALUGUEIS)) {
-            LocalDate dataAtual = LocalDate.now();
             if (contasAReceberModel.getDataDeVencimento().isBefore(dataAtual)) {
                 contasAReceberModel.setRecebimentoAlugueis(RecebimentoAlugueis.EM_ATRASO);
             } else if (contasAReceberModel.getDataDeVencimento().isAfter(dataAtual)) {
@@ -53,10 +62,15 @@ public class ContasAReceberService {
             BigDecimal resultado = alugueisFactory.getCalculoAluguel(contasAReceberModel).calcular(contasAReceberModel.getValorRecebido());
             contasAReceberModel.setValorFinal(resultado);
         }
+
         return contasAReceberRepository.save(contasAReceberModel);
     }
 
     public ContasAReceberModel alterar(ContasAReceberModel contasAReceberModel) {
+        if ("pago".equalsIgnoreCase(contasAReceberModel.getStatus())) {
+            LocalDateTime dataAtual = LocalDateTime.now();
+            contasAReceberModel.setDataDeRecebimento(dataAtual);
+        }
         return contasAReceberRepository.save(contasAReceberModel);
     }
 

@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class ContasAReceberDTO {
-    @NotBlank(message = "Status da conta deve ser preenchido.")
     private String status;
 
     @NotBlank(message = "Recebimento deve ser preenchido.")

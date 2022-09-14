@@ -1,5 +1,6 @@
 package com.modulo5.catalisa4desafio3.service;
 
+import com.modulo5.catalisa4desafio3.DTO.ContasAReceberRespostaDTO;
 import com.modulo5.catalisa4desafio3.model.ContasAReceberModel;
 import com.modulo5.catalisa4desafio3.repository.ContasAReceberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,9 @@ public class ContasAReceberService {
     @Autowired
     private ContasAReceberRepository contasAReceberRepository;
 
-    public List<ContasAReceberModel> buscarTodas() {
-        return contasAReceberRepository.findAll();
+    public List<ContasAReceberRespostaDTO> buscarTodas() {
+        List<ContasAReceberModel> contas = contasAReceberRepository.findAll();
+        return ContasAReceberRespostaDTO.converterLista(contas);
     }
 
     public Optional<ContasAReceberModel> buscarPorId(Long codigo) {

@@ -46,12 +46,13 @@ public class ContasAReceberModel {
     @JoinColumn(name = "usuario_id", referencedColumnName = "codigo")
     private UsuarioModel usuario;
 
-    public ContasAReceberModel(String status, String recebimento, BigDecimal valorRecebido, BigDecimal valorFinal, TipoRecebido tipoRecebido, LocalDate dataDeVencimento, LocalDateTime dataDeRecebimento, UsuarioModel usuario) {
+    public ContasAReceberModel(String status, String recebimento, BigDecimal valorRecebido, BigDecimal valorFinal, TipoRecebido tipoRecebido, RecebimentoAlugueis recebimentoAlugueis, LocalDate dataDeVencimento, LocalDateTime dataDeRecebimento, UsuarioModel usuario) {
         this.status = status;
         this.recebimento = recebimento;
         this.valorRecebido = valorRecebido;
         this.valorFinal = valorFinal;
         this.tipoRecebido = tipoRecebido;
+        this.recebimentoAlugueis = recebimentoAlugueis;
         this.dataDeVencimento = dataDeVencimento;
         this.dataDeRecebimento = dataDeRecebimento;
         this.usuario = usuario;

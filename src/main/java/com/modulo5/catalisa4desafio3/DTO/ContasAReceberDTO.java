@@ -1,5 +1,6 @@
 package com.modulo5.catalisa4desafio3.DTO;
 
+import com.modulo5.catalisa4desafio3.enumeration.RecebimentoAlugueis;
 import com.modulo5.catalisa4desafio3.enumeration.TipoRecebido;
 import com.modulo5.catalisa4desafio3.model.ContasAReceberModel;
 import com.modulo5.catalisa4desafio3.model.UsuarioModel;
@@ -28,6 +29,8 @@ public class ContasAReceberDTO {
     @NotNull(message = "Tipo recebido deve ser preenchido.")
     private TipoRecebido tipoRecebido;
 
+    private RecebimentoAlugueis recebimentoAlugueis;
+
     @NotNull(message = "Data de vencimento deve ser preenchida.")
     private LocalDate dataDeVencimento;
 
@@ -37,6 +40,6 @@ public class ContasAReceberDTO {
     private UsuarioModel usuario;
 
     public ContasAReceberModel converterParaObjeto() {
-        return new ContasAReceberModel(status, recebimento, valorRecebido, valorFinal, tipoRecebido, dataDeVencimento, dataDeRecebimento, usuario);
+        return new ContasAReceberModel(status, recebimento, valorRecebido, valorFinal, tipoRecebido, recebimentoAlugueis, dataDeVencimento, dataDeRecebimento, usuario);
     }
 }

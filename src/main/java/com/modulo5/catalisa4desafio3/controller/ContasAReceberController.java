@@ -2,6 +2,7 @@ package com.modulo5.catalisa4desafio3.controller;
 
 import com.modulo5.catalisa4desafio3.DTO.ContasAReceberDTO;
 import com.modulo5.catalisa4desafio3.DTO.ContasAReceberRespostaDTO;
+import com.modulo5.catalisa4desafio3.enumeration.TipoRecebido;
 import com.modulo5.catalisa4desafio3.factory.AlugueisFactory;
 import com.modulo5.catalisa4desafio3.model.ContasAReceberModel;
 import com.modulo5.catalisa4desafio3.service.ContasAReceberService;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +31,20 @@ public class ContasAReceberController {
         return ResponseEntity.ok(contasAReceberService.buscarPorId(id));
     }
 
+    @GetMapping(path = "/contasreceber/{status}")
+    public ResponseEntity<List<ContasAReceberModel>> buscarContaPorStatus(@PathVariable String status) {
+        return ResponseEntity.ok(contasAReceberService.buscarPorStatus(status));
+    }
+
+    @GetMapping(path = "/contasreceber/{tipoRecebido}")
+    public ResponseEntity<List<ContasAReceberModel>> buscarContaPorTipoRecebido(@PathVariable TipoRecebido tipoRecebido) {
+        return ResponseEntity.ok(contasAReceberService.buscarPorTipoRecebido(tipoRecebido));
+    }
+
+    @GetMapping(path = "/contasreceber/{dataDeVencimento}")
+    public ResponseEntity<List<ContasAReceberModel>> buscarContaPorDataDeVencimento(@PathVariable LocalDate dataDeVencimento) {
+        return ResponseEntity.ok(contasAReceberService.buscarPorDataDeVencimento(dataDeVencimento));
+    }
     @PostMapping(path = "/contasreceber")
     public ResponseEntity<ContasAReceberRespostaDTO> cadastrarConta(@Valid @RequestBody ContasAReceberDTO dto, AlugueisFactory alugueisFactory) {
         ContasAReceberModel conta = contasAReceberService.cadastrar(dto.converterParaObjeto(), alugueisFactory);

@@ -28,6 +28,18 @@ public class ContasAReceberService {
         return contasAReceberRepository.findById(codigo);
     }
 
+    public List<ContasAReceberModel> buscarPorStatus(String status) {
+        return contasAReceberRepository.findByStatus(status);
+    }
+
+    public List<ContasAReceberModel> buscarPorTipoRecebido(TipoRecebido tipoRecebido) {
+        return contasAReceberRepository.findByTipoRecebido(tipoRecebido);
+    }
+
+    public List<ContasAReceberModel> buscarPorDataDeVencimento(LocalDate dataDeVencimento) {
+        return contasAReceberRepository.findByDataDeVencimento(dataDeVencimento);
+    }
+
     public ContasAReceberModel cadastrar(ContasAReceberModel contasAReceberModel, AlugueisFactory alugueisFactory) {
         if (contasAReceberModel.getTipoRecebido().equals(TipoRecebido.ALUGUEIS)) {
             LocalDate dataAtual = LocalDate.now();

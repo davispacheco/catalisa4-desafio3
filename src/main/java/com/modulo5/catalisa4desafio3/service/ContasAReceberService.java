@@ -1,11 +1,16 @@
 package com.modulo5.catalisa4desafio3.service;
 
 import com.modulo5.catalisa4desafio3.DTO.ContasAReceberRespostaDTO;
+import com.modulo5.catalisa4desafio3.enumeration.RecebimentoAlugueis;
+import com.modulo5.catalisa4desafio3.enumeration.TipoRecebido;
+import com.modulo5.catalisa4desafio3.factory.AlugueisFactory;
 import com.modulo5.catalisa4desafio3.model.ContasAReceberModel;
 import com.modulo5.catalisa4desafio3.repository.ContasAReceberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +28,18 @@ public class ContasAReceberService {
         return contasAReceberRepository.findById(codigo);
     }
 
-    public ContasAReceberModel cadastrar(ContasAReceberModel contasAReceberModel) {
+    public ContasAReceberModel cadastrar(ContasAReceberModel contasAReceberModel, AlugueisFactory alugueisFactory) {
+        if (contasAReceberModel.getTipoRecebido().equals(TipoRecebido.ALUGUEIS)) {
+            LocalDate dataAtual = LocalDate.now();
+            if (contasAReceberModel.getDataDeVencimento().isBefore(dataAtual)) {
+                contasAReceberModel.setRecebimentoAlugueis(RecebimentoAlugueis.EM_ATRASO);
+            } else if (contasAReceberModel.getDataDeVencimento().isAfter(dataAtual)) {
+                contasAReceberModel.setRecebimentoAlugueis(RecebimentoAlugueis.ADIANTADO);
+            } else {
+                contasAReceberModel.setRecebimentoAlugueis(RecebimentoAlugueis.EM_DIA);
+            }
+            BigDecimal resultado = alugueisFactory.getCalculoAluguel(contasAReceberModel.getRecebimentoAlugueis()).calcular(contasAReceberModel.getValorRecebido());
+        }
         return contasAReceberRepository.save(contasAReceberModel);
     }
 

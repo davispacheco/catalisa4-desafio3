@@ -23,6 +23,8 @@ public class ContasAReceberDTO {
     @Min(value = 1, message = "Valor recebido deve ser preenchido.")
     private BigDecimal valorRecebido;
 
+    private BigDecimal valorFinal;
+
     @NotNull(message = "Tipo recebido deve ser preenchido.")
     private TipoRecebido tipoRecebido;
 
@@ -35,6 +37,6 @@ public class ContasAReceberDTO {
     private UsuarioModel usuario;
 
     public ContasAReceberModel converterParaObjeto() {
-        return new ContasAReceberModel(status, recebimento, valorRecebido, tipoRecebido, dataDeVencimento, dataDeRecebimento, usuario);
+        return new ContasAReceberModel(status, recebimento, valorRecebido, valorFinal, tipoRecebido, dataDeVencimento, dataDeRecebimento, usuario);
     }
 }

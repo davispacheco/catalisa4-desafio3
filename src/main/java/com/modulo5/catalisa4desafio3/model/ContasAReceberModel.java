@@ -1,5 +1,6 @@
 package com.modulo5.catalisa4desafio3.model;
 
+import com.modulo5.catalisa4desafio3.enumeration.RecebimentoAlugueis;
 import com.modulo5.catalisa4desafio3.enumeration.TipoRecebido;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,8 +30,12 @@ public class ContasAReceberModel {
     @Column(nullable = false)
     private BigDecimal valorRecebido;
 
+    private BigDecimal valorFinal;
+
     @Column(nullable = false)
     private TipoRecebido tipoRecebido;
+
+    private RecebimentoAlugueis recebimentoAlugueis;
 
     @Column(nullable = false)
     private LocalDate dataDeVencimento;
@@ -41,10 +46,11 @@ public class ContasAReceberModel {
     @JoinColumn(name = "usuario_id", referencedColumnName = "codigo")
     private UsuarioModel usuario;
 
-    public ContasAReceberModel(String status, String recebimento, BigDecimal valorRecebido, TipoRecebido tipoRecebido, LocalDate dataDeVencimento, LocalDateTime dataDeRecebimento, UsuarioModel usuario) {
+    public ContasAReceberModel(String status, String recebimento, BigDecimal valorRecebido, BigDecimal valorFinal, TipoRecebido tipoRecebido, LocalDate dataDeVencimento, LocalDateTime dataDeRecebimento, UsuarioModel usuario) {
         this.status = status;
         this.recebimento = recebimento;
         this.valorRecebido = valorRecebido;
+        this.valorFinal = valorFinal;
         this.tipoRecebido = tipoRecebido;
         this.dataDeVencimento = dataDeVencimento;
         this.dataDeRecebimento = dataDeRecebimento;

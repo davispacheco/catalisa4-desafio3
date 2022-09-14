@@ -2,6 +2,7 @@ package com.modulo5.catalisa4desafio3.controller;
 
 import com.modulo5.catalisa4desafio3.DTO.ContasAReceberDTO;
 import com.modulo5.catalisa4desafio3.DTO.ContasAReceberRespostaDTO;
+import com.modulo5.catalisa4desafio3.factory.AlugueisFactory;
 import com.modulo5.catalisa4desafio3.model.ContasAReceberModel;
 import com.modulo5.catalisa4desafio3.service.ContasAReceberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,8 @@ public class ContasAReceberController {
     }
 
     @PostMapping(path = "/contasreceber")
-    public ResponseEntity<ContasAReceberRespostaDTO> cadastrarConta(@Valid @RequestBody ContasAReceberDTO dto) {
-        ContasAReceberModel conta = contasAReceberService.cadastrar(dto.converterParaObjeto());
+    public ResponseEntity<ContasAReceberRespostaDTO> cadastrarConta(@Valid @RequestBody ContasAReceberDTO dto, AlugueisFactory alugueisFactory) {
+        ContasAReceberModel conta = contasAReceberService.cadastrar(dto.converterParaObjeto(), alugueisFactory);
         return new ResponseEntity<>(ContasAReceberRespostaDTO.converterParaDTO(conta), HttpStatus.CREATED);
     }
 

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class CidadeController {
     }
 
     @PostMapping(path = "/cidades")
-    public ResponseEntity<CidadeRespostaDTO> cadastrarCidade(@RequestBody CidadeDTO dto) {
+    public ResponseEntity<CidadeRespostaDTO> cadastrarCidade(@Valid @RequestBody CidadeDTO dto) {
         CidadeModel cidade = cidadeService.cadastrar(dto.converterParaObjeto());
         return new ResponseEntity<>(CidadeRespostaDTO.converterParaDTO(cidade), HttpStatus.CREATED);
     }

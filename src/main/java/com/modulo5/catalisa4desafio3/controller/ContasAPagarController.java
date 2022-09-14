@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,43 +20,44 @@ public class ContasAPagarController {
     @Autowired
     private ContasAPagarService contasAPagarService;
 
-    @GetMapping(path = "/contas")
+    @GetMapping(path = "/contasapagar")
     public ResponseEntity<List<ContasAPagarRespostaDTO>> buscarTodasContas() {
         return ResponseEntity.ok(contasAPagarService.buscarTodas());
     }
 
-    @GetMapping(path = "/contas/{id}")
+    @GetMapping(path = "/contasapagar/{id}")
     public ResponseEntity<Optional<ContasAPagarModel>> buscarContaPorId(@PathVariable Long id) {
         return ResponseEntity.ok(contasAPagarService.buscarPorId(id));
     }
 
-    @GetMapping(path = "/nome/{nome}")
+    @GetMapping(path = "/contasapagar/{nome}")
     public ResponseEntity<List<ContasAPagarModel>> buscarContaPorNome(@PathVariable String nome) {
         return ResponseEntity.ok(contasAPagarService.buscarPorNome(nome));
     }
 
-    @GetMapping(path = "/contas/status/{status}")
+    @GetMapping(path = "/contasapagar/{status}")
     public ResponseEntity<List<ContasAPagarModel>> buscarContaPorStatus(@PathVariable Status status) {
         return ResponseEntity.ok(contasAPagarService.buscarPorStatus(status));
     }
 
-    @GetMapping(path = "/contas/tipo/{tipo}")
+    @GetMapping(path = "/contasapagar/{tipo}")
     public ResponseEntity<List<ContasAPagarModel>> buscarContaPorTipo(@PathVariable Tipo tipo) {
         return ResponseEntity.ok(contasAPagarService.buscarPorTipo(tipo));
     }
 
-    @PostMapping(path = "/contas")
-    public ResponseEntity<ContasAPagarRespostaDTO> cadastrarConta(@RequestBody ContasAPagarDTO dto) {
+    @PostMapping(path = "/contasapagar")
+    public ResponseEntity<ContasAPagarRespostaDTO> cadastrarConta(@Valid @RequestBody ContasAPagarDTO dto) {
         ContasAPagarModel conta = contasAPagarService.cadastrar(dto.converterParaObjeto());
         return new ResponseEntity<>(ContasAPagarRespostaDTO.converterParaDTO(conta), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/contas/{id}")
-    public ResponseEntity<ContasAPagarModel> alterarConta(@RequestBody ContasAPagarModel contasAPagarModel, @PathVariable Long id) {
-        return ResponseEntity.ok(contasAPagarService.alterar(contasAPagarModel));
+    @PutMapping(path = "/contasapagar/{id}")
+    public ResponseEntity<ContasAPagarRespostaDTO> alterarConta(@RequestBody ContasAPagarDTO dto, @PathVariable Long id) {
+        ContasAPagarModel conta = contasAPagarService.alterar(dto.converterParaObjeto());
+        return ResponseEntity.ok(ContasAPagarRespostaDTO.converterParaDTO(conta));
     }
 
-    @DeleteMapping(path = "/contas/{id}")
+    @DeleteMapping(path = "/contasapagar/{id}")
     public ResponseEntity<?> deletarConta(@PathVariable Long id) {
         contasAPagarService.deletar(id);
         return ResponseEntity.noContent().build();

@@ -20,12 +20,16 @@ public class ContasAPagarModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
+    @Column(length = 20, nullable = false)
     private String nome;
 
+    @Column(nullable = false)
     private double valor;
 
+    @Column(nullable = false)
     private Tipo tipo;
 
+    @Column(nullable = false)
     private LocalDate dataDeVencimento;
 
     private LocalDateTime dataDePagamento;

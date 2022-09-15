@@ -24,7 +24,6 @@ public class EnderecoDTO {
     @NotBlank(message = "CEP deve ser preenchido.")
     private String cep;
 
-    @NotBlank(message = "Ponto de referência deve ser preenchido.")
     @Length(min = 5, max = 40, message = "Ponto de referência deve possuir de {min} a {max} caracteres.")
     private String pontoReferencia;
 

@@ -26,7 +26,7 @@ public class EnderecoModel implements Serializable {
     @Column(length = 8, nullable = false)
     private String cep;
 
-    @Column(length = 40, nullable = false)
+    @Column(length = 40)
     private String pontoReferencia;
 
     @ManyToOne
